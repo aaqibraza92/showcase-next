@@ -2,6 +2,7 @@ import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import logo from "../../assets/img/logo.png";
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Header = () => {
   return (
@@ -10,7 +11,7 @@ const Header = () => {
 
         <Row>
             <Col lg={3}>
-                <Image src={logo} className='img-fluid' alt="" />
+                <Link href="/"><Image src={logo} className='img-fluid' alt="logo" /></Link>
             </Col>
             <Col lg={6}>
               <div className='text-center'>
