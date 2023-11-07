@@ -4,6 +4,7 @@ import logo from "../../assets/img/logo.png";
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router'
+import Navigation from './Navigation';
 
 const Header = () => {
   const router = useRouter();
@@ -22,9 +23,7 @@ const Header = () => {
             </Col>
             <Col lg={6}>
               <div className='text-center'>
-              <h3>
-                Navigation
-               </h3>
+              <Navigation/>
               </div>
             </Col>
 
