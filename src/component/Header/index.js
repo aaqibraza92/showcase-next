@@ -15,7 +15,7 @@ const Header = () => {
 
   return (
   <header className={`mainHeader pt20 pb20 bgWhite`}>
-    <Container>
+    <Container fluid>
 
         <Row>
             <Col lg={3}>
