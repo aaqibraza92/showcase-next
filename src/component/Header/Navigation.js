@@ -17,7 +17,12 @@ const Navigation = () => {
         getMenu();
     }, [])
     return (
-        <div>Navigation</div>
+        <div>Navigation
+
+            {
+                console.log(menu)
+            }
+        </div>
     )
 }
 
