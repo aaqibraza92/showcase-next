@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import logo from "../../assets/img/logo.png";
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router'
 
 const Header = () => {
+  const router = useRouter();
+  useEffect(()=>{
+    document.body.className = window.location.pathname==="/" ? "body-Home" : "body-"+window.location.pathname.replaceAll("/", "");
+    return () => { document.body.className = ''; }
+  },[router?.pathname])
+
   return (
   <header className={`mainHeader pt20 pb20 bgWhite`}>
     <Container>
