@@ -17,11 +17,17 @@ const Navigation = () => {
         getMenu();
     }, [])
     return (
-        <div>Navigation
-
-            {
-                console.log(menu)
-            }
+        <div>
+            <ul className='main_ul'>
+                {
+                    menu.map((e,i)=>(
+                        <li className='abcd' key={i}>
+                            {e.name}
+                        </li>
+                    ))
+                }
+            </ul>
+           
         </div>
     )
 }
