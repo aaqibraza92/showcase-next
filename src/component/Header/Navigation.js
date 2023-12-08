@@ -1,26 +1,37 @@
 import { apiBaseUrl, megaMenu } from '@/helpers/apiUrl'
+import { qtyItem } from '@/store/reducers/SomeAuth'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Navigation = () => {
-    const [menu, setMenu] = useState([]);
-    const getMenu = async () => {
-        await axios.get(apiBaseUrl + megaMenu).then((res) => {
-            if (res && res?.status === 200) {
-                setMenu(res?.data?.data);
-            }
+    const dispatch= useDispatch();
+  const navData= useSelector((s)=>{
+    return s?.nav?.data
+  });
 
-        })
-    }
+  const [nav,setNav]=useState([]);
 
-    useEffect(() => {
-        getMenu();
-    }, [])
+  useEffect(()=>{
+    setNav(navData);
+  },[navData])
+
+    // const [menu, setMenu] = useState([]);
+    // const getMenu = async () => {
+    //     await axios.get(apiBaseUrl + megaMenu).then((res) => {
+    //         if (res && res?.status === 200) {
+    //             setMenu(res?.data?.data);
+    //         }
+
+    //     })
+    // }
+
+
     return (
         <div>
             <ul className='main_ul'>
                 {
-                    menu.map((e,i)=>(
+                    nav?.map((e,i)=>(
                         <li className='abcd' key={i}>
                             {e.name}
                         </li>
@@ -33,3 +44,4 @@ const Navigation = () => {
 }
 
 export default Navigation
+

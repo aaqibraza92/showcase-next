@@ -3,6 +3,7 @@ import { Col, Container, Row } from 'react-bootstrap'
 import Head from 'next/head';
 import Image from 'next/image';
 const About = () => {
+
     return (
         <>
             <Head>
@@ -58,3 +59,9 @@ const About = () => {
 }
 
 export default About
+
+// export async function getServerSideProps() {
+//     const res = await fetch('https://api.github.com/repos/vercel/next.js')
+//     const repo = await res.json()
+//     return { props: { repo } }
+// }

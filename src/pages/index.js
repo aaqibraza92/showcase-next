@@ -4,10 +4,17 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import BannerSlider from '@/component/Home/BannerSlider'
 import CallToAction from '@/component/Home/CallToAction'
+import axios from 'axios'
+import { apiBaseUrl, megaMenu } from '@/helpers/apiUrl'
+import { useDispatch } from 'react-redux'
+import { Navigation } from '@/store/reducers/SomeAuth'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export default function Home(props) {
+  const dispatch= useDispatch();
+  dispatch(Navigation(props)) 
+  
   return (
     <>
       <Head>
@@ -23,3 +30,16 @@ export default function Home() {
     </>
   )
 }
+
+export async function getServerSideProps() {
+  // const res = await fetch('https://api.github.com/repos/vercel/next.js')
+  // const repo = await res.json()
+  // return { props: { repo } }
+
+const {data}=  await axios.get(apiBaseUrl + megaMenu);
+return {
+  props: data || {}
+}
+
+}
+
