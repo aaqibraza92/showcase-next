@@ -5,8 +5,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router'
 import Navigation from './Navigation';
+import { usePathname } from 'next/navigation';
 
 const Header = () => {
+  const path= usePathname();
+  console.log("path",path)
   const router = useRouter();
   useEffect(()=>{
     document.body.className = window.location.pathname==="/" ? "body-Home" : "body-"+window.location.pathname.replaceAll("/", "");

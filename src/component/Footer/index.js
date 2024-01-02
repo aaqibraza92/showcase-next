@@ -1,10 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import logo from "../../assets/img/bw-logo-footer.png";
 import Image from 'next/image';
 import Link from 'next/link'
+import { useRouter } from 'next/navigation';
 
 const Footer = () => {
+
+    const router= useRouter();
+
+    useEffect(()=>{
+
+    })
+
+    const redirectFunc=()=>{
+        router.push("/about");
+    }
     return (
         <footer>
             <section className='pt80 pb80 footerMain'>
@@ -14,6 +25,9 @@ const Footer = () => {
                             <Link href="/">
                                 <Image src={logo} className='img-fluid' alt='footer logo' />
                             </Link>
+                            <button onClick={redirectFunc}>
+                                    About 
+                            </button>
                         </Col>
                         <Col lg={3} xl={3}>
                             <div className=''>
@@ -22,7 +36,7 @@ const Footer = () => {
                                 </h3>
                                 <ul className='noUl'>
                                     <li className='mb7'>
-                                        <Link className='text-light' href="/">About Us</Link>  </li>
+                                        <Link className='text-light' href="/about">About Us</Link>  </li>
                                     <li className='mb7'>  <Link className='text-light' href="/">Blog</Link> </li>
                                     <li className='mb7'>
                                         <Link className='text-light' href="/">Privacy Policy</Link>
