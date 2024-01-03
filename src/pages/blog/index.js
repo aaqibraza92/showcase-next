@@ -1,33 +1,44 @@
 import Link from 'next/link'
 import React from 'react'
+import ButtonComp from './buttonComp'
+import { Container } from 'react-bootstrap'
+import custom from "@/styles/custom.module.css"
+import localFont from 'next/font/local'
+const myFont = localFont({ src: './my-font.woff2' })
 
+const oswald = Oswald({
+    weight: '700',
+    subsets: ['latin'],
+  })
 
-const index =  ({repo}) => {
- console.log("hello",repo);
+const index = ({ repo }) => {
     return (
         <>
-            <div>Blog list</div>
-            <ul>
-                <li>
-                    <Link href="/blog/1">Link 1</Link>
-                </li>
-                <li>
-                    <Link href="/blog/2"> Link 2</Link>
-                </li>
-                <li>
-                    <Link href="/blog/3"> Link 3</Link>
-                </li>
-            </ul>
+            <Container>
+                <div className={myFont.className} >Blog list</div>
+                <ul>
+                    <li className={custom.colorBlue}>
+                        <Link href="/blog/1">Link 1</Link>
+                    </li>
+                    <li>
+                        <Link href="/blog/2"> Link 2</Link>
+                    </li>
+                    <li>
+                        <Link href="/blog/3"> Link 3</Link>
+                    </li>
+                </ul>
 
-            <ul>
-                {
-                    repo?.products?.map((e,i)=>(
-                            <li key={i}>
-                                {e.title}
+                <ul>
+                    {
+                        repo?.products?.map((e, i) => (
+                            <li key={i} className='mb-2'>
+                                {e.title} <ButtonComp count={i} title={e.title} />
                             </li>
-                    ))
-                }
-            </ul>
+                        ))
+                    }
+                </ul>
+            </Container>
+
         </>
 
     )
@@ -47,4 +58,4 @@ export async function getServerSideProps() {
     const repo = await res.json()
     // Pass data to the page via props
     return { props: { repo } }
-  }
+}
