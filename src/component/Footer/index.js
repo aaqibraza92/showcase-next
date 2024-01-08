@@ -37,7 +37,7 @@ const Footer = () => {
                                 <ul className='noUl'>
                                     <li className='mb7'>
                                         <Link className='text-light' href="/about">About Us</Link>  </li>
-                                    <li className='mb7'>  <Link className='text-light' href="/">Blog</Link> </li>
+                                    <li className='mb7'>  <Link className='text-light' href="/blog">Blog</Link> </li>
                                     <li className='mb7'>
                                         <Link className='text-light' href="/">Privacy Policy</Link>
                                     </li>

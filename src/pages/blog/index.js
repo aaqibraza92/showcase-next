@@ -4,16 +4,25 @@ import ButtonComp from './buttonComp'
 import { Container } from 'react-bootstrap'
 import custom from "@/styles/custom.module.css"
 import localFont from 'next/font/local'
-const myFont = localFont({ src: './my-font.woff2' })
+const myFont = localFont({ src: "../../assets/font/Avenir-Black.ttf" })
+import Head from 'next/head';
+import Script from "next/script"
 
-const oswald = Oswald({
-    weight: '700',
-    subsets: ['latin'],
-  })
+
 
 const index = ({ repo }) => {
     return (
         <>
+          <Head>
+        <title>
+        Our Blog 
+        </title>
+        <meta
+          name="This is our blog"
+          content="Check out iPhone 12 XR Pro and iPhone 12 Pro Max. Visit your local store and for expert advice."
+          key="desc"
+        />
+      </Head>
             <Container>
                 <div className={myFont.className} >Blog list</div>
                 <ul>
@@ -29,6 +38,11 @@ const index = ({ repo }) => {
                 </ul>
 
                 <ul>
+                   
+                    {
+                    repo?.products.length < 33 && <h2>Aaqib</h2>
+                        
+                    }
                     {
                         repo?.products?.map((e, i) => (
                             <li key={i} className='mb-2'>
