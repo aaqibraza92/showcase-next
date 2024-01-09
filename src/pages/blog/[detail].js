@@ -1,14 +1,24 @@
-import { useParams } from 'next/navigation'
 import React from 'react'
+import { useParams } from 'next/navigation'
+import { useRouter } from 'next/router'
+import { Container } from 'react-bootstrap';
 
 const blogDetail = () => {
-    const data= useParams();
-
+  const router= useRouter();
+    console.log("props",router?.query?.detail)
   return (
-    <div >
-        Dyanmic path : {data?.detail}
+    <div>
+      <Container>
+      Dyanmic path : {router?.query?.detail}
+      </Container>
+    
     </div>
   )
 }
 
 export default blogDetail
+
+
+// export async function generateStaticParams(){
+//   const bloglist= ""
+// }

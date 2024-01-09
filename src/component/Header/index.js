@@ -9,7 +9,6 @@ import { usePathname } from 'next/navigation';
 
 const Header = () => {
   const path= usePathname();
-  console.log("path",path)
   const router = useRouter();
   useEffect(()=>{
     document.body.className = window.location.pathname==="/" ? "body-Home" : "body-"+window.location.pathname.replaceAll("/", "");

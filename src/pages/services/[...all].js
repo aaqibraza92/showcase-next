@@ -1,11 +1,10 @@
-import { useParams } from 'next/navigation'
+
 import React from 'react'
 
-const allService = ({params}) => {
-    const data= useParams();
-    console.log("data",data?.all)
+const allService = (props) => {
+
   return (
-    <div>allService {data?.all?.[0]}</div>
+    <div>allService</div>
   )
 }
 

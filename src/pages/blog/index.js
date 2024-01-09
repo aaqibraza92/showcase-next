@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect } from 'react'
 import ButtonComp from './buttonComp'
 import { Container } from 'react-bootstrap'
 import custom from "@/styles/custom.module.css"
@@ -7,10 +7,15 @@ import localFont from 'next/font/local'
 const myFont = localFont({ src: "../../assets/font/Avenir-Black.ttf" })
 import Head from 'next/head';
 import Script from "next/script"
-
+import getUsers from '@/component/users'
+import UserLists from './userLists'
 
 
 const index = ({ repo }) => {
+
+
+
+  
     return (
         <>
           <Head>
@@ -24,6 +29,11 @@ const index = ({ repo }) => {
         />
       </Head>
             <Container>
+
+                <h2>
+                    User lists
+                </h2>
+                <UserLists/>
                 <div className={myFont.className} >Blog list</div>
                 <ul>
                     <li className={custom.colorBlue}>
@@ -70,6 +80,17 @@ export async function getServerSideProps() {
     // Fetch data from external API
     const res = await fetch('https://dummyjson.com/products')
     const repo = await res.json()
+
+    // let data1= UserLists();
+    // console.log("data1",data1)
     // Pass data to the page via props
     return { props: { repo } }
+}
+
+export async function generateStaticParams(){
+    const res= getUsers();
+    // const res=  await fetch("https://jsonplaceholder.typicode.com/users")
+    // return res.map((user)=>({
+    //     detail: user.id.toString()
+    // }))
 }
