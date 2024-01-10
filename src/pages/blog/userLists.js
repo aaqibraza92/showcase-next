@@ -1,18 +1,19 @@
 import getUsers from '@/component/users'
 import React, { useEffect, useState } from 'react'
 
-const UserLists = () => {
-    const [data,setData]=useState([])
+const UserLists = (props) => {
+    console.log("props",props?.data);
+    const [data,setData]=useState(props?.data)
     useEffect(() => {
         getDat()
     }, [])
 
 
     const getDat = async () => {
-        const getUserData = getUsers();
-        const user = await getUserData
+        // const getUserData = getUsers();
+        // const user = await getUserData
 
-        setData(user)
+        setData(props?.data)
 
         
     }
@@ -23,8 +24,11 @@ const UserLists = () => {
                 data?.map((e,i)=>(
                     <li key={i}>
                           {
-                            e.name
+                            e.name 
                           }
+                       <button>
+                        {i}
+                       </button>
                     </li>  
                 ))
             }

@@ -6,16 +6,12 @@ import custom from "@/styles/custom.module.css"
 import localFont from 'next/font/local'
 const myFont = localFont({ src: "../../assets/font/Avenir-Black.ttf" })
 import Head from 'next/head';
-import Script from "next/script"
 import getUsers from '@/component/users'
 import UserLists from './userLists'
 
 
-const index = ({ repo }) => {
+const index = ({products,userslist}) => {
 
-
-
-  
     return (
         <>
           <Head>
@@ -33,7 +29,14 @@ const index = ({ repo }) => {
                 <h2>
                     User lists
                 </h2>
-                <UserLists/>
+                {/* {
+userslist?.map((e,i)=>(
+    <div className='listingUser' key={i}>
+        {e.name} 
+    </div>
+))
+                } */}
+                <UserLists data={userslist}/>
                 <div className={myFont.className} >Blog list</div>
                 <ul>
                     <li className={custom.colorBlue}>
@@ -50,11 +53,11 @@ const index = ({ repo }) => {
                 <ul>
                    
                     {
-                    repo?.products.length < 33 && <h2>Aaqib</h2>
+                    products?.products.length < 33 && <h2>Aaqib</h2>
                         
                     }
                     {
-                        repo?.products?.map((e, i) => (
+                        products?.products?.map((e, i) => (
                             <li key={i} className='mb-2'>
                                 {e.title} <ButtonComp count={i} title={e.title} />
                             </li>
@@ -77,14 +80,13 @@ export default index
 //     }
 //   );
 export async function getServerSideProps() {
-    // Fetch data from external API
     const res = await fetch('https://dummyjson.com/products')
     const repo = await res.json()
 
-    // let data1= UserLists();
-    // console.log("data1",data1)
-    // Pass data to the page via props
-    return { props: { repo } }
+    let getUserData= getUsers();
+    let resUser= await getUserData;
+
+    return { props: {products: repo, userslist: resUser } }
 }
 
 export async function generateStaticParams(){

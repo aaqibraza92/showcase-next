@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const ButtonComp = ({title,count}) => {
+  const [data,setData]=useState(count)
+  useEffect(()=>{
+    setData(count)
+  },[])
   return (
     <button onClick={()=>alert(title)}>
-        Data {count}
+        Data {data}
     </button>
   )
 }
