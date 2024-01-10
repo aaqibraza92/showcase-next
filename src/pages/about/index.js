@@ -3,6 +3,7 @@ import { Col, Container, Row } from 'react-bootstrap'
 import Head from 'next/head';
 import Image from 'next/image';
 const About = () => {
+        console.log("process161",process.env.REACT_APP_SECRECT_KEYS)
 
     return (
         <>
@@ -16,7 +17,9 @@ const About = () => {
             </Head>
             <section className='pt80 pb80'>
                 <Container>
-
+                {
+                    process.env.REACT_APP_SECRECT_KEYS="AAQIBASDAD" &&  <h2 className='mb15'>RAZA</h2>
+                }
                     <Row className='align-items-center gy-5'>
                         <Col lg={6} md={6}>
                             <h2 className='mb15'>

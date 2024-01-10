@@ -10,8 +10,17 @@ import getUsers from '@/component/users'
 import UserLists from './userLists'
 
 
+
+
 const index = ({products,userslist}) => {
 
+
+    // const router = useRouter();
+    // useEffect(()=>{
+    //     router.push("/");
+    // },[])
+
+   
     return (
         <>
           <Head>
