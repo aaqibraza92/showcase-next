@@ -4,3 +4,6 @@
 .avenir{
     font-family: Avenir-Black;
 }
+.mainBody {
+    min-height: 66vh;
+  }

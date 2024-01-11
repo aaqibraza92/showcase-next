@@ -29,10 +29,10 @@ const Navigation = () => {
 
     return (
         <div>
-            <ul className='main_ul'>
+            <ul className='main_ul noUl d-flex justify-content-center align-items-center'>
                 {
                     nav?.map((e,i)=>(
-                        <li className='abcd' key={i}>
+                        <li className='mr10' key={i}>
                             {e.name}
                         </li>
                     ))

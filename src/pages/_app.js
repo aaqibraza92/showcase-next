@@ -10,7 +10,9 @@ export default function App({ Component, pageProps }) {
   return <>
   <Provider store={Store}>
   <Header/>
+  <div className='mainBody'>
   <Component {...pageProps} />
+  </div>
   <Footer/>
   </Provider>
 

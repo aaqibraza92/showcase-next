@@ -31,9 +31,26 @@ const Header = () => {
 
             <Col lg={3}>
               <div className='d-flex justify-content-end'>
-              <h3>
-                cart items
-               </h3>
+                  <div className='mr5'>
+                    <Link href="">
+                      <Image src={require("@/assets/img/header/search.svg")}/>
+                    </Link>
+                  </div>
+                  <div className='mr5'>
+                    <Link href="/login">
+                      <Image src={require("@/assets/img/header/user.svg")}/>
+                    </Link>
+                  </div>
+                  <div className='mr5'>
+                    <Link href="">
+                      <Image src={require("@/assets/img/header/heart.svg")}/>
+                    </Link>
+                  </div>
+                  <div className='mr5'>
+                    <Link href="">
+                      <Image src={require("@/assets/img/header/cart.svg")}/>
+                    </Link>
+                  </div>
               </div>
     
             </Col>
