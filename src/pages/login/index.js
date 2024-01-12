@@ -1,12 +1,23 @@
+'use client';
 import { ApiHeader, loginApi } from '@/helpers/apiUrl';
 import { AfterLogin } from '@/store/reducers/LoginReducer';
 import axios from 'axios';
 import Link from 'next/link';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Col, Container, Form, Row } from 'react-bootstrap'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-const Login = () => {
+const Login = ({users}) => {
+    const selector= useSelector((state)=>{
+        return state?.loginReducer?.userData
+    })
+
+    const [loginData,setloginData]=useState({});
+
+    useEffect(()=>{
+        setloginData(selector);
+    },[selector])
+
     const dispatch= useDispatch()
     const [user,setUser]= useState("");
     const [pw,setpw]= useState("");
@@ -29,6 +40,8 @@ const Login = () => {
         })
     }
   return (
+    <>
+    
     <section>
         <Container>
             <Row className='justify-content-center'>
@@ -62,12 +75,51 @@ const Login = () => {
                         </Form>
                  
                     </div>
+
+                    <div>
+                        <div>
+                            <div>
+                                First Name: 
+                            </div>
+                            <div>
+                            {
+                        loginData?.first_name
+                    }
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                Last Name: 
+                            </div>
+                            <div>
+                            {
+                        loginData?.last_name
+                    }
+                            </div>
+                        </div>
+                    </div>
+              
+                  
+                    
                 </Col>
             </Row>
+        
         </Container>
+
     </section>
- 
+
+ </>
   )
 }
 
 export default Login
+
+
+// export async function getServerSideProps() {
+//     const selector= useSelector((state)=>(state?.loginReducer?.userData))
+//     const res = await selector
+//     const repo = await res.json()
+
+//     return { props: {users: repo} }
+// }
+

@@ -1,17 +1,21 @@
-"use client"
+
 import { createSlice } from "@reduxjs/toolkit";
 
-
-//  var localData= JSON.parse(localStorage.getItem("userData"))
+let item;
+if (typeof window !== 'undefined') {
+     item = localStorage.getItem('userData')
+     item= JSON.parse(item)
+}
+  
 const LoginReducer= createSlice({
     name: "LoginReducer",
     initialState: {
-     userData: JSON.parse(localStorage.getItem("userData")), 
+        userData: item
     },
     reducers: {
         AfterLogin(state,action){
             state.userData=action.payload
-            JSON.stringify(localStorage.setItem("userData",action.payload))
+            localStorage.setItem("userData",JSON.stringify(action.payload))
         }
     }
 
