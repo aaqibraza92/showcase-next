@@ -10,10 +10,10 @@ import { usePathname } from 'next/navigation';
 const Header = () => {
   const path= usePathname();
   const router = useRouter();
-  useEffect(()=>{
-    document.body.className = window.location.pathname==="/" ? "body-Home" : "body-"+window.location.pathname.replaceAll("/", "");
-    return () => { document.body.className = ''; }
-  },[router?.pathname])
+  // useEffect(()=>{
+  //   document.body.className = window.location.pathname==="/" ? "body-Home" : "body-"+window.location.pathname.replaceAll("/", "");
+  //   return () => { document.body.className = ''; }
+  // },[router?.pathname])
 
   return (
   <header className={`mainHeader pt20 pb20 bgWhite`}>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -23,7 +23,26 @@ const BannerSlider = () => {
         >
           {Array(10).fill().map((e, i) => (
             <SwiperSlide key={i}>
-                <Image src={require('@/assets/img/home/banner.jpg')} className='img-fluid' alt='banner'/>
+              <div className='position-relative d-flex align-items-center'>
+              <Image src={require('@/assets/img/home/banner.jpg')} className='img-fluid' alt='banner'/>
+              <div className='position-absolute textOverlap w-100'>
+                <Container>
+                  <Row>
+                    <Col lg={6}>
+                    <h3>
+                    Slide {i}
+                  </h3>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto dolore dignissimos nobis ab nihil adipisci dicta pariatur excepturi.
+                  </p>
+                    </Col>
+                  </Row>
+             
+                </Container>
+            
+              </div>
+              </div>
+             
             </SwiperSlide>
           ))}
 

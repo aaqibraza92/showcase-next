@@ -16,6 +16,10 @@ const Footer = () => {
     const redirectFunc=()=>{
         router.push("/about");
     }
+
+    const data=()=>{
+        alert("aaq")
+    }
     return (
         <footer>
             <section className='pt80 pb80 footerMain'>
@@ -31,7 +35,7 @@ const Footer = () => {
                         </Col>
                         <Col lg={3} xl={3}>
                             <div className=''>
-                                <h3 className='text-light mb15'>
+                                <h3 className='text-light mb15' onClick={data}>
                                     Information
                                 </h3>
                                 <ul className='noUl'>

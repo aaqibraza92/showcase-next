@@ -277,6 +277,12 @@ textarea::-ms-input-placeholder {
   text-decoration: none;
   border: none;
   line-height: 18px;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+.btnTheme:hover {
+  color: #fff;
+  background: #929398;
 }
 .zIndex1{
     z-index: 1;
@@ -398,3 +404,7 @@ body .radiusFull{
 }
 
 
+
+.insta-iframe {
+  height: 410px;
+}
