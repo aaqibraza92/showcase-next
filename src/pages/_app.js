@@ -22,15 +22,3 @@ export default function App({ Component, pageProps,props }) {
   </>
 }
 
-export async function getServerSideProps() {
-  const res = await fetch('https://api.github.com/repos/vercel/next.js')
-  const repo = await res.json()
-  return { props: { repo } }
-
-// const {data}=  await axios.get(apiBaseUrl + megaMenu);
-// // console.log("data11",data?.data)
-// return {
-//   props: data || {}
-// }
-// MegaMenu()
-}

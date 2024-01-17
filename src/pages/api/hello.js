@@ -1,5 +1,10 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-export default function handler(req, res) {
-  res.status(200).json({ name: 'John Doe' })
-}
+
+const handler = async (req,res) => {
+  // const {data}= await axios.get(`${megaMenu}`)
+  // const dataJson = await data.json()
+  // console.log("dataJsonInner",dataJson)
+        
+      }
+
+      export default handler

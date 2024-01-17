@@ -14,9 +14,11 @@ import Newsletter from '@/component/Home/Newsletter'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home(props) {
+export default function Home({data}) {
   const dispatch= useDispatch();
-  dispatch(Navigation(props)) 
+  dispatch(Navigation(data)) 
+
+  console.log("props",data)
   
   return (
     <>
@@ -43,23 +45,55 @@ export default function Home(props) {
 //   // const repo = await res.json()
 //   // return { props: { repo } }
 
-// const {data}=  await axios.get(apiBaseUrl + megaMenu);
-// // console.log("data11",data?.data)
-// return {
-//   props: data || {}
-// }
+//   // await axios.get("https://api.github.com/repos/vercel/next.js").then((res)=>{
+//   //   return {
+//   //     props: {
+//   //       megamenu: res.json()
+//   //     }
+//   //   }
+//   // })
+
+//   // const {data1}= await axios.get(`${megaMenu}`)
+//   // const dataJson = await data1.json()
+//   // return {
+//   //   props: {dataJson}
+//   // }
+//   // console.log("dataJson1",dataJson)
+
+// // const {data}=  await axios.get(`${apiBaseUrl}/api/hello`);
+// // const apires = await fetch(`${apiBaseUrl}/api/hello`)
+// // const data = await apires.json()
+// // console.log('data',apires);
+// // // console.log("data11",data?.data)
+// // return {
+// //   props:{ da:'data' }
 // // MegaMenu()
 // }
 
-// const MegaMenu=async()=>{
-//   await axios.get(apiBaseUrl + megaMenu).then((res)=>{
-     
-//       if(res.status==200){
-//         return {
-//           props: res?.data?.data
-//         }
-//         console.log("res",res?.data)
-//       }
-//   })
-// }
 
+
+export async function getServerSideProps() {
+  try {
+    // Make an HTTP request using Axios in getServerSideProps
+    const response = await axios.get(megaMenu);
+    const data = await response.data.data;
+    // if(data){
+
+    // }
+    return {
+      props: {
+        data,
+      },
+    };
+  } catch (error) {
+    // Handle errors if the request fails
+    console.error('Error fetching data:', error.message);
+
+    // Pass an empty object or any default data to the component
+    return {
+      props: {
+        data: {},
+      },
+    };
+  }
+}
