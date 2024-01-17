@@ -40,56 +40,29 @@ export default function Home({data}) {
   )
 }
 
-// export async function getServerSideProps() {
-//   // const res = await fetch('https://api.github.com/repos/vercel/next.js')
-//   // const repo = await res.json()
-//   // return { props: { repo } }
-
-//   // await axios.get("https://api.github.com/repos/vercel/next.js").then((res)=>{
-//   //   return {
-//   //     props: {
-//   //       megamenu: res.json()
-//   //     }
-//   //   }
-//   // })
-
-//   // const {data1}= await axios.get(`${megaMenu}`)
-//   // const dataJson = await data1.json()
-//   // return {
-//   //   props: {dataJson}
-//   // }
-//   // console.log("dataJson1",dataJson)
-
-// // const {data}=  await axios.get(`${apiBaseUrl}/api/hello`);
-// // const apires = await fetch(`${apiBaseUrl}/api/hello`)
-// // const data = await apires.json()
-// // console.log('data',apires);
-// // // console.log("data11",data?.data)
-// // return {
-// //   props:{ da:'data' }
-// // MegaMenu()
-// }
-
 
 
 export async function getServerSideProps() {
   try {
-    // Make an HTTP request using Axios in getServerSideProps
-    const response = await axios.get(megaMenu);
-    const data = await response.data.data;
-    // if(data){
-
-    // }
-    return {
-      props: {
-        data,
-      },
-    };
+    return axios.get(megaMenu)
+      .then((response) => {
+        const data = response.data;
+        return {
+          props: {
+            data,
+          },
+        };
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error.message);
+        return {
+          props: {
+            data: {},
+          },
+        };
+      });
   } catch (error) {
-    // Handle errors if the request fails
     console.error('Error fetching data:', error.message);
-
-    // Pass an empty object or any default data to the component
     return {
       props: {
         data: {},
