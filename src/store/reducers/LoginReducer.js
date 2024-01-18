@@ -10,12 +10,16 @@ if (typeof window !== 'undefined') {
 const LoginReducer= createSlice({
     name: "LoginReducer",
     initialState: {
-        userData: item
+        userData: item,
+        nav: []
     },
     reducers: {
         AfterLogin(state,action){
             state.userData=action.payload
             localStorage.setItem("userData",JSON.stringify(action.payload))
+        },
+        Navigation(state,action){
+            state.nav=action.payload
         }
     }
 

@@ -1,5 +1,6 @@
 'use client';
 import { ApiHeader, loginApi } from '@/helpers/apiUrl';
+import { Navigation } from '@/store/reducers/HeaderReducer';
 import { AfterLogin } from '@/store/reducers/LoginReducer';
 import axios from 'axios';
 import Link from 'next/link';
@@ -19,6 +20,9 @@ const Login = ({users}) => {
     },[selector])
 
     const dispatch= useDispatch()
+    dispatch(Navigation([{
+        day: "val"
+    }]))
     const [user,setUser]= useState("");
     const [pw,setpw]= useState("");
     const onLogin=(e)=>{

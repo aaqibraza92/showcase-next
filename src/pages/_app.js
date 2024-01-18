@@ -3,13 +3,11 @@ import '@/assets/css/common.css'
 import Header from '../component/Header'
 import "bootstrap/dist/css/bootstrap.min.css";
 import Footer from '../component/Footer';
-import { Provider } from 'react-redux';
-import Store from '@/store';
+import { Provider, useStore } from 'react-redux';
 import { apiBaseUrl, megaMenu } from '@/helpers/apiUrl';
-export default function App({ Component, pageProps,props }) {
-
-  console.log(props)
-
+import Store, { wrapper } from '@/store';
+export default function App({ Component, pageProps}) {
+// const store=useStore();
   return <>
   <Provider store={Store}>
   <Header/>
@@ -22,3 +20,4 @@ export default function App({ Component, pageProps,props }) {
   </>
 }
 
+// export default wrapper.withRedux(App);

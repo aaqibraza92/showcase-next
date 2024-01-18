@@ -14,13 +14,10 @@ const SomeAuth= createSlice({
         },
         NameOfItems(state,action){
             state.name=action.payload
-        },
-        Navigation(state,action){
-            state.nav=action.payload
         }
     }
 })
 
 
+export const {qtyItem,NameOfItems}=SomeAuth.actions;
 export default SomeAuth.reducer;
-export const {qtyItem,NameOfItems,Navigation}=SomeAuth.actions;
