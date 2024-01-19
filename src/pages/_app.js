@@ -4,9 +4,10 @@ import Header from '../component/Header'
 import "bootstrap/dist/css/bootstrap.min.css";
 import Footer from '../component/Footer';
 import { Provider, useStore } from 'react-redux';
-import { apiBaseUrl, megaMenu } from '@/helpers/apiUrl';
 import Store, { wrapper } from '@/store';
 export default function App({ Component, pageProps}) {
+
+    
 // const store=useStore();
   return <>
   <Provider store={Store}>

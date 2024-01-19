@@ -6,10 +6,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/router'
 import Navigation from './Navigation';
 import { usePathname } from 'next/navigation';
+import axios from 'axios';
+import { apiBaseUrl, megaMenu } from '@/helpers/apiUrl';
 
 const Header = () => {
   const path= usePathname();
   const router = useRouter();
+
   // useEffect(()=>{
   //   document.body.className = window.location.pathname==="/" ? "body-Home" : "body-"+window.location.pathname.replaceAll("/", "");
   //   return () => { document.body.className = ''; }

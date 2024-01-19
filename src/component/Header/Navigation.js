@@ -4,26 +4,31 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Navigation = (props) => {
-    console.log(props)
-    const dispatch= useDispatch();
-  const navData= useSelector((s)=>{
-    return s?.nav?.data
-  });
+//     const dispatch= useDispatch();
+//   const navData= useSelector((s)=>{
+//     return s?.nav?.data
+//   });
+
 
   const [nav,setNav]=useState([]);
 
+
+
+
+  const getMenu = async () => {
+
+    return await axios.get(megaMenu).then((res) => {
+        if (res && res?.status === 200) {
+          
+            setNav(res?.data?.data);
+        }
+
+    })
+}
   useEffect(()=>{
-    setNav(navData);
-  },[navData])
+    getMenu();
+  },[])
 
-    const getMenu = async () => {
-        await axios.get(apiBaseUrl + megaMenu).then((res) => {
-            if (res && res?.status === 200) {
-                setMenu(res?.data?.data);
-            }
-
-        })
-    }
 
 
     return (
