@@ -1,7 +1,9 @@
+import { listView, square } from '@/assets/svg'
 import { ApiHeader, productlist } from '@/helpers/apiUrl'
 import axios from 'axios'
 import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
+import ProductListComp from './ProductListComp'
 
 const FineJewelry = ({ data }) => {
   console.log("data", data)
@@ -25,12 +27,24 @@ const FineJewelry = ({ data }) => {
             <Row>
               <Col lg={6}>
                 <select name="" id="" className='form-control'>
-                <option value="">Sort by</option>
+                  <option value="">Sort by</option>
                   <option value="featured">Featured</option>
                 </select>
               </Col>
               <Col lg={6}>
-                View <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium active_grid ml-2 css-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="AppsIcon"><path d="M4 8h4V4H4zm6 12h4v-4h-4zm-6 0h4v-4H4zm0-6h4v-4H4zm6 0h4v-4h-4zm6-10v4h4V4zm-6 4h4V4h-4zm6 6h4v-4h-4zm0 6h4v-4h-4z"></path></svg>
+                <div className='d-flex justify-content-end'>
+                  <div>
+                    View {square} | {listView}
+                  </div>
+                </div>
+                {
+                  data?.data?.result?.length > 0 && data?.data?.result.map((e,i) => (
+                    <ProductListComp key={i} data={e} />
+                  ))
+                }
+
+
+
               </Col>
             </Row>
           </Col>
