@@ -36,7 +36,7 @@ const FineJewelry = ({ data }) => {
                   <div>
                     View {square} | {listView}
                   </div>
-                </div>
+                </div> 
                 {
                   data?.data?.result?.length > 0 && data?.data?.result.map((e,i) => (
                     <ProductListComp key={i} data={e} />
