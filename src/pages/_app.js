@@ -1,5 +1,6 @@
 import '@/styles/globals.css'
 import '@/assets/css/common.css'
+import '@/assets/css/productList.css'
 import Header from '../component/Header'
 import "bootstrap/dist/css/bootstrap.min.css";
 import Footer from '../component/Footer';

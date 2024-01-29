@@ -46,6 +46,7 @@ const Footer = () => {
                                         <Link className='text-light' href="/">Privacy Policy</Link>
                                     </li>
                                     <li>     <Link className='text-light' href="/">Terms & Condition</Link> </li>
+                                    <li>     <Link className='text-light' href="/fine-jewelry">Fine Jewelry</Link> </li>
                                 </ul>
                             </div>
                         </Col>

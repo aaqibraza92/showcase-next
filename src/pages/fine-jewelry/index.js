@@ -1,12 +1,15 @@
 import { listView, square } from '@/assets/svg'
 import { ApiHeader, productlist } from '@/helpers/apiUrl'
 import axios from 'axios'
-import React from 'react'
+import React, { useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-import ProductListComp from './ProductListComp'
+import ProductGridComp from './ProductGridComp'
+import ProductListGrid from './ProductListGrid'
 
 const FineJewelry = ({ data }) => {
-  console.log("data", data)
+  // console.log("data", data)
+  const [view, setView] = useState(false);
+
   return (
     <section>
       <Container>
@@ -33,20 +36,38 @@ const FineJewelry = ({ data }) => {
               </Col>
               <Col lg={6}>
                 <div className='d-flex justify-content-end'>
-                  <div>
-                    View {square} | {listView}
+                  <div className='prodLeng mr7 pr7'>
+                    {data?.data?.count} Products found |
                   </div>
-                </div> 
-                {
-                  data?.data?.result?.length > 0 && data?.data?.result.map((e,i) => (
-                    <ProductListComp key={i} data={e} />
-                  ))
-                }
+                  <div>
+                    View <button className='noBtn' onClick={() => setView(false)}>{square}</button> |  <button className='noBtn' onClick={() => setView(true)}>{listView}</button>
+                  </div>
+                </div>
+
+
+
 
 
 
               </Col>
             </Row>
+
+            <section className='mt-3'>
+              <Row className='gy-3'>
+                {
+                  data?.data?.result?.length > 0 && data?.data?.result.map((e, i) => (
+                    view ? <Col key={i} lg={12} sm={12}>
+                      <ProductListGrid data={e} />
+                    </Col> :
+                      <Col key={i} lg={4} sm={4}>
+                        <ProductGridComp data={e} />
+                      </Col>
+
+                  ))
+                }
+              </Row>
+            </section>
+
           </Col>
         </Row>
       </Container>

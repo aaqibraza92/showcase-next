@@ -3,6 +3,8 @@ export const megaMenu= apiBaseUrl+"home/megamenu?device_type=1"
 export const loginApi= apiBaseUrl+"/user/login"
 export const newsletter= apiBaseUrl+"common/subscribe_newsletter"
 export const productlist= apiBaseUrl+"product/productlist"
+export const productDetailEndPoint= apiBaseUrl+"product/productdetail"
+export const relatedProduct = apiBaseUrl+"product/relatedproduct"
 
 export const ApiHeader={
      // 'authorization':`Token e222085edc871220cae528152b73c1317ba2addf`,
