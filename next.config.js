@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["dl2vs6wk2ewna.cloudfront.net"],
+    domains: ["dl2vs6wk2ewna.cloudfront.net","swiperjs.com"],
   },
   // redirects: async ()=>{
   //   return [

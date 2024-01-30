@@ -10,12 +10,12 @@ const ProductListGrid = (props) => {
             <Row>
                 <Col lg={4}>
                     <div className='proList'>
-                        <Image width={300} height={300} className='img-fluid' src={data?.product_image?.[0]?.url} />
+                    <Link href={`/product-detail/${data?.slug}`}> <Image width={300} height={300} className='img-fluid' src={data?.product_image?.[0]?.url} /> </Link>
                     </div>
                 </Col>
                 <Col lg={8}>
                     <div className='productTitle fs15 fw600 mt8'>
-                        {data?.name}
+                    <Link className="colorBlack" href={`/product-detail/${data?.slug}`}> {data?.name} </Link>
                     </div>
                     <div className='d-flex w-100 justify-content-between'>
                         <div>

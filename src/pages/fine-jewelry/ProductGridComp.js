@@ -11,7 +11,7 @@ const ProductGridComp = (props) => {
           <Link href={`/product-detail/${data?.slug}`}><Image alt="image" width={300} height={300} className='img-fluid' src={data?.product_image?.[0]?.url}/></Link>
         </div>
         <div className='productTitle fs15 fw600 mt8'>
-         {data?.name}
+        <Link className="colorBlack" href={`/product-detail/${data?.slug}`}>{data?.name}</Link>  
         </div>
         <div className='d-flex w-100 justify-content-between'>
             <div>
