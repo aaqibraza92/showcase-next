@@ -13,9 +13,9 @@ import Image from 'next/image';
 import ProductGridComp from '../fine-jewelry/ProductGridComp';
 
 const ProductDetail = ({ data1, related, filter }) => {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [filterData, setfilterData] = useState(filter);
   const allData = data1?.data?.[0];
-  console.log("related", related)
+  console.log("related", filter)
   return (
     <section>
       <Container>
@@ -69,14 +69,29 @@ const ProductDetail = ({ data1, related, filter }) => {
                 <div className='fw600 fs18'>
                   Price: ${allData?.sale_price}
                 </div>
-                <div className='form-group'>
-                  <label htmlFor="">Material</label>
-                  <select name="" id="">
-                    <option value="">
 
-                    </option>
-                  </select>
+
+                <div className='mb25 mt15'>
+                  {
+                    filterData?.map((e, i) => (
+                      <div className='form-group mb12' key={i}>
+                        <label className='d-block t5' htmlFor="">{e.title}</label>
+                        <select name="" id="" className='form-control' onChange={(e)=>setfilterData(e.target.value)}>
+                          {
+                            e.data.map((inner, ind) => (
+                              <option key={ind} value={inner.value}>
+                                {inner.name}
+                              </option>
+                            ))
+                          }
+
+                        </select>
+                      </div>
+                    ))
+                  }
                 </div>
+
+
 
               </div>
 
@@ -125,7 +140,7 @@ const ProductDetail = ({ data1, related, filter }) => {
 
       <div className='productDetails mt30 mb30'>
         <Container>
-          <h3 className='mb20'> 
+          <h3 className='mb20'>
             Related Products
           </h3>
           <Row>
@@ -151,6 +166,8 @@ export default ProductDetail
 
 
 export async function getServerSideProps(context) {
+
+  
   try {
     const data = {
       currency_code: "USD",
@@ -193,7 +210,7 @@ export async function getServerSideProps(context) {
       props: {
         data1: data1,
         related: related?.data,
-        filter
+        filter: filter?.data
       },
     };
   } catch (error) {
