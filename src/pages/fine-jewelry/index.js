@@ -1,19 +1,49 @@
 import { listView, square } from '@/assets/svg'
 import { ApiHeader, productListFilter, productlist } from '@/helpers/apiUrl'
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import ProductGridComp from './ProductGridComp'
 import ProductListGrid from './ProductListGrid'
 
 const FineJewelry = ({ resProList, proFilter }) => {
-  // console.log("data", data)
+  console.log("proFilter", proFilter)
+
+
+  const [addedfilter, setAddedfilter] = useState([]);
+
+  useEffect(()=>{
+    firstLoadFilter()
+  },[proFilter])
+
+  const firstLoadFilter=async()=>{
+    const temp=[];
+    await proFilter?.data?.normal_filters.length > 0 &&  proFilter?.data?.normal_filters?.forEach((e,i)=>{
+      temp.push({
+        title: e.title,
+        filter: [],
+        name: []
+      })
+  })
+    setAddedfilter(temp)
+  }
+
+
+
   const [view, setView] = useState(false);
+
+
 
   console.log("proFilter", proFilter?.data?.normal_filters)
 
   const handleCheckbox=(event,title,value,index)=>{
-      console.log("aa",event,title,value,index)
+      // console.log("aa",event,title,value,index);
+
+      const tempGet= [...addedfilter];
+
+
+
+      setAddedfilter();
   }
 
   return (
