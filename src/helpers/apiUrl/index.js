@@ -6,6 +6,7 @@ export const productlist= apiBaseUrl+"product/productlist"
 export const productDetailEndPoint= apiBaseUrl+"product/productdetail"
 export const relatedProduct = apiBaseUrl+"product/relatedproduct"
 export const productDetailFilter= apiBaseUrl+"product/productdetailfilter"
+export const productListFilter= apiBaseUrl+"product/productfilter"
 
 export const ApiHeader={
      // 'authorization':`Token e222085edc871220cae528152b73c1317ba2addf`,

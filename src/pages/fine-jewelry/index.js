@@ -1,30 +1,56 @@
 import { listView, square } from '@/assets/svg'
-import { ApiHeader, productlist } from '@/helpers/apiUrl'
+import { ApiHeader, productListFilter, productlist } from '@/helpers/apiUrl'
 import axios from 'axios'
 import React, { useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import ProductGridComp from './ProductGridComp'
 import ProductListGrid from './ProductListGrid'
 
-const FineJewelry = ({ data }) => {
+const FineJewelry = ({ resProList, proFilter }) => {
   // console.log("data", data)
   const [view, setView] = useState(false);
+
+  console.log("proFilter", proFilter?.data?.normal_filters)
+
+  const handleCheckbox=(event,title,value,index)=>{
+      console.log("aa",event,title,value,index)
+  }
 
   return (
     <section>
       <Container>
         <div className='wrapperData'>
           <h3>
-            {data?.data?.meta_title}
+            {resProList?.data?.meta_title}
           </h3>
           <p>
-            {data?.data?.meta_desp}
+            {resProList?.data?.meta_desp}
           </p>
         </div>
 
         <Row>
           <Col lg={3}>
+            <div className='mb5'>
 
+              {
+                proFilter?.data?.normal_filters.map((e, i) => (
+                  <div key={i} className='mb10'>
+                    <h6 className='fs22 fw600 mb3'> {e.title}   </h6>
+                    {
+                      e.data.map((event, index) => (
+                        <label htmlFor={e.title.replaceAll(" ","-")+event?.id} key={index} className='d-flex align-items-center pointer' >
+                          <input id={e.title.replaceAll(" ","-")+event?.id} type="checkbox" value={event.value} onChange={(eve)=>handleCheckbox(eve,e.title,event.name,event?.value)} /> <span className='ml5 form-control'>{event.name} </span> 
+                        </label>
+                      ))
+                    }
+                  </div>
+
+
+
+                ))
+              }
+
+            </div>
           </Col>
           <Col lg={9}>
             <Row>
@@ -37,25 +63,19 @@ const FineJewelry = ({ data }) => {
               <Col lg={6}>
                 <div className='d-flex justify-content-end'>
                   <div className='prodLeng mr7 pr7'>
-                    {data?.data?.count} Products found |
+                    {resProList?.data?.count} Products found |
                   </div>
                   <div>
                     View <button className='noBtn' onClick={() => setView(false)}>{square}</button> |  <button className='noBtn' onClick={() => setView(true)}>{listView}</button>
                   </div>
                 </div>
-
-
-
-
-
-
               </Col>
             </Row>
 
             <section className='mt-3'>
               <Row className='gy-3'>
                 {
-                  data?.data?.result?.length > 0 && data?.data?.result.map((e, i) => (
+                  resProList?.data?.result?.length > 0 && resProList?.data?.result.map((e, i) => (
                     view ? <Col key={i} lg={12} sm={12}>
                       <ProductListGrid data={e} />
                     </Col> :
@@ -77,7 +97,7 @@ const FineJewelry = ({ data }) => {
 
 export default FineJewelry
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
   try {
     const data = {
       currency_code: "USD",
@@ -92,30 +112,41 @@ export async function getServerSideProps() {
       user_id: "",
       session_id: "",
     };
-    return axios.post(productlist, data, {
-      headers: ApiHeader
-    }).then((response) => {
-      const data = response.data;
-      return {
-        props: {
-          data,
-        },
-      };
-    })
-      .catch((error) => {
-        console.error('Error fetching data:', error.message);
-        return {
-          props: {
-            data: {},
-          },
-        };
-      });
-  } catch (error) {
-    console.error('Error fetching data:', error.message);
+    const filterPayload = {
+      category: "fine-jewelry",
+      currency_code: "USD",
+      search_text: ""
+    };
+    const options = {
+      method: "POST",
+      headers: {
+        // if file upload "Content-Type": "multipart/form-data",
+        Accept: "application/json"
+      },
+    };
+
+    const responses = await Promise.all([
+      axios.post(productlist, data, options),
+      axios.post(productListFilter, filterPayload, options)
+    ]);
+
+    const resProList = responses[0].data;
+    const proFilter = responses[1].data;
+
     return {
       props: {
-        data: {},
+        resProList,
+        proFilter
       },
+    };
+  } catch (error) {
+    console.error(error);
+
+    // Pass only serializable error information (like a message)
+    return {
+      props: {
+        error: error.message || 'An error occurred'
+      }
     };
   }
 }
