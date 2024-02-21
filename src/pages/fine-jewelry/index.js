@@ -36,14 +36,25 @@ const FineJewelry = ({ resProList, proFilter }) => {
 
   console.log("proFilter", proFilter?.data?.normal_filters)
 
-  const handleCheckbox=(event,title,value,index)=>{
+  const handleCheckbox=(event,title,name,value)=>{
       // console.log("aa",event,title,value,index);
 
       const tempGet= [...addedfilter];
 
 
+      if(event.target.checked){
+    
+      }else{
+        alert("un checked");
+      }
+      tempGet.forEach((e,i)=>{
+          e.filter= value,
+          e.name= name
+      })
 
-      setAddedfilter();
+
+
+      setAddedfilter(tempGet);
   }
 
   return (
