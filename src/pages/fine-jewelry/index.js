@@ -12,19 +12,19 @@ const FineJewelry = ({ resProList, proFilter }) => {
 
   const [addedfilter, setAddedfilter] = useState([]);
 
-  useEffect(()=>{
+  useEffect(() => {
     firstLoadFilter()
-  },[proFilter])
+  }, [proFilter])
 
-  const firstLoadFilter=async()=>{
-    const temp=[];
-    await proFilter?.data?.normal_filters.length > 0 &&  proFilter?.data?.normal_filters?.forEach((e,i)=>{
+  const firstLoadFilter = async () => {
+    const temp = [];
+    await proFilter?.data?.normal_filters.length > 0 && proFilter?.data?.normal_filters?.forEach((e, i) => {
       temp.push({
         title: e.title,
         filter: [],
         name: []
       })
-  })
+    })
     setAddedfilter(temp)
   }
 
@@ -36,29 +36,35 @@ const FineJewelry = ({ resProList, proFilter }) => {
 
   console.log("proFilter", proFilter?.data?.normal_filters)
 
-  const handleCheckbox=(event,title,name,value)=>{
-      // console.log("aa",event,title,value,index);
+  const handleCheckbox = (event, title, name, value) => {
+    // console.log("aa",event,title,value,index);
 
-      const tempGet= [...addedfilter];
+    const tempGet = [...addedfilter];
 
 
-      if(event.target.checked){
-    
-      }else{
-        alert("un checked");
+    if (event.target.checked) {
+      if (title === "") {
+        tempGet.forEach((e, i) => {
+          e.filter = value,
+            e.name = name
+        })
       }
-      tempGet.forEach((e,i)=>{
-          e.filter= value,
-          e.name= name
-      })
+
+    } else {
+      alert("un checked");
+    }
 
 
 
-      setAddedfilter(tempGet);
+
+    setAddedfilter(tempGet);
   }
 
   return (
     <section>
+      {
+        console.log("addedfilter11", addedfilter)
+      }
       <Container>
         <div className='wrapperData'>
           <h3>
@@ -79,8 +85,8 @@ const FineJewelry = ({ resProList, proFilter }) => {
                     <h6 className='fs22 fw600 mb3'> {e.title}   </h6>
                     {
                       e.data.map((event, index) => (
-                        <label htmlFor={e.title.replaceAll(" ","-")+event?.id} key={index} className='d-flex align-items-center pointer' >
-                          <input id={e.title.replaceAll(" ","-")+event?.id} type="checkbox" value={event.value} onChange={(eve)=>handleCheckbox(eve,e.title,event.name,event?.value)} /> <span className='ml5 form-control'>{event.name} </span> 
+                        <label htmlFor={e.title.replaceAll(" ", "-") + event?.id} key={index} className='d-flex align-items-center pointer' >
+                          <input id={e.title.replaceAll(" ", "-") + event?.id} type="checkbox" value={event.value} onChange={(eve) => handleCheckbox(eve, e.title, event.name, event?.value)} /> <span className='ml5 form-control'>{event.name} </span>
                         </label>
                       ))
                     }
