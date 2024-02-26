@@ -56,8 +56,7 @@ const FineJewelry = ({ resProList, proFilter }) => {
       tempGet.forEach((e, i) => {
         if (title === e.title) {
          const index= e.filter.indexOf(value);
-         console.log("index",index)
-         e.filter.splice(index,i)
+         e.filter.splice(index,1)
         }
       })
 
