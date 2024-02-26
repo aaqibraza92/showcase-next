@@ -7,7 +7,7 @@ import ProductGridComp from './ProductGridComp'
 import ProductListGrid from './ProductListGrid'
 
 const FineJewelry = ({ resProList, proFilter }) => {
-  console.log("proFilter", proFilter)
+
 
 
   const [addedfilter, setAddedfilter] = useState([]);
@@ -15,7 +15,7 @@ const FineJewelry = ({ resProList, proFilter }) => {
   useEffect(() => {
     firstLoadFilter()
   }, [proFilter])
-
+  // console.log("proFilter", addedfilter)
   const firstLoadFilter = async () => {
     const temp = [];
     await proFilter?.data?.normal_filters.length > 0 && proFilter?.data?.normal_filters?.forEach((e, i) => {
@@ -34,7 +34,7 @@ const FineJewelry = ({ resProList, proFilter }) => {
 
 
 
-  console.log("proFilter", proFilter?.data?.normal_filters)
+  // console.log("proFilter", proFilter?.data?.normal_filters)
 
   const handleCheckbox = (event, title, name, value) => {
     // console.log("aa",event,title,value,index);
@@ -43,21 +43,31 @@ const FineJewelry = ({ resProList, proFilter }) => {
 
 
     if (event.target.checked) {
-      if (title === "") {
-        tempGet.forEach((e, i) => {
-          e.filter = value,
-            e.name = name
-        })
-      }
 
+      tempGet.forEach((e, i) => {
+        if (title === e.title) {
+          e.filter.push(value),
+            e.name.push(name)
+        }
+      })
+
+      setAddedfilter(tempGet);
     } else {
-      alert("un checked");
+      tempGet.forEach((e, i) => {
+        if (title === e.title) {
+         const index= e.filter.indexOf(value);
+         console.log("index",index)
+         e.filter.splice(index,i)
+        }
+      })
+
+      setAddedfilter(tempGet);
     }
 
 
 
 
-    setAddedfilter(tempGet);
+    
   }
 
   return (
