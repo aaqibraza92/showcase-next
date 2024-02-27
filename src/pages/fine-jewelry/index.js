@@ -5,11 +5,13 @@ import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import ProductGridComp from './ProductGridComp'
 import ProductListGrid from './ProductListGrid'
-import { setCookie,getCookie  } from 'cookies-next';
+import { setCookie, getCookie } from 'cookies-next';
 import { useRouter } from 'next/router';
 const FineJewelry = ({ resProList, proFilter }) => {
 
-  const router= useRouter();
+  console.log("resProList", resProList)
+
+  const router = useRouter();
 
 
 
@@ -46,26 +48,26 @@ const FineJewelry = ({ resProList, proFilter }) => {
       tempGet.forEach((e, i) => {
         if (title === e.title) {
           e.filter.push(value)
-            e.name.push(name)
+          e.name.push(name)
         }
       })
       setAddedfilter(tempGet);
-      setCookie('filterData', JSON.stringify(tempGet));  
+      setCookie('filterData', JSON.stringify(tempGet));
       router.replace(router.asPath)
     } else {
       tempGet.forEach((e, i) => {
         if (title === e.title) {
-         const index= e.filter.indexOf(value);
-         e.filter.splice(index,1)
-         e.name.splice(index,1)
+          const index = e.filter.indexOf(value);
+          e.filter.splice(index, 1)
+          e.name.splice(index, 1)
         }
       })
 
       setAddedfilter(tempGet);
-      setCookie('filterData', JSON.stringify(tempGet));  
+      setCookie('filterData', JSON.stringify(tempGet));
       router.replace(router.asPath)
-      
-    } 
+
+    }
 
 
   }
@@ -131,21 +133,37 @@ const FineJewelry = ({ resProList, proFilter }) => {
               </Col>
             </Row>
 
-            <section className='mt-3'>
-              <Row className='gy-3'>
-                {
-                  resProList?.data?.result?.length > 0 && resProList?.data?.result.map((e, i) => (
-                    view ? <Col key={i} lg={12} sm={12}>
-                      <ProductListGrid data={e} />
-                    </Col> :
-                      <Col key={i} lg={4} sm={4}>
-                        <ProductGridComp data={e} />
-                      </Col>
+            {
+              resProList?.status === 1 ? <section className='mt-3'>
+                <Row className='gy-3'>
+                  {
+                    resProList?.data?.result?.length > 0 && resProList?.data?.result.map((e, i) => (
+                      view ? <Col key={i} lg={12} sm={12}>
+                        <ProductListGrid data={e} />
+                      </Col> :
+                        <Col key={i} lg={4} sm={4}>
+                          <ProductGridComp data={e} />
+                        </Col>
 
+                    ))
+                  }
+                </Row>
+              </section> : <Row className='gy-3 mt-2'>
+                {
+                  Array(12).fill().map(() => (
+                    <Col sm={4}>
+                      <div className="skeleton" style={{ height: "300px" }}></div>
+                    </Col>
                   ))
                 }
+
               </Row>
-            </section>
+            }
+
+
+
+
+
 
           </Col>
         </Row>
@@ -156,12 +174,12 @@ const FineJewelry = ({ resProList, proFilter }) => {
 
 export default FineJewelry
 
-export async function getServerSideProps(props,context) {
+export async function getServerSideProps(props, context) {
   // let getDa= props.req.cookies;
   // getDa && JSON.parse("getDa",getDa)
-  const filterDataCookie= props?.req?.cookies?.filterData
-  const filterDataIntoParse= filterDataCookie ? JSON.parse(filterDataCookie) : [];
-  console.log("readCookie1",filterDataIntoParse)
+  const filterDataCookie = props?.req?.cookies?.filterData
+  const filterDataIntoParse = filterDataCookie ? JSON.parse(filterDataCookie) : [];
+  console.log("readCookie1", filterDataIntoParse)
   try {
     const data = {
       currency_code: "USD",
