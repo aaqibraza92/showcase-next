@@ -12,13 +12,14 @@ const FineJewelry = ({ resProList, proFilter }) => {
   console.log("resProList", resProList)
 
   const router = useRouter();
-
-
-
+  const [loader, setloader] = useState(false);
   const [addedfilter, setAddedfilter] = useState([]);
 
   useEffect(() => {
     firstLoadFilter()
+    if (resProList?.status === 1) {
+      setloader(false)
+    }
   }, [proFilter])
   // console.log("proFilter", addedfilter)
   const firstLoadFilter = async () => {
@@ -69,7 +70,7 @@ const FineJewelry = ({ resProList, proFilter }) => {
 
     }
 
-
+    setloader(true)
   }
 
 
@@ -134,21 +135,7 @@ const FineJewelry = ({ resProList, proFilter }) => {
             </Row>
 
             {
-              resProList?.status === 1 ? <section className='mt-3'>
-                <Row className='gy-3'>
-                  {
-                    resProList?.data?.result?.length > 0 && resProList?.data?.result.map((e, i) => (
-                      view ? <Col key={i} lg={12} sm={12}>
-                        <ProductListGrid data={e} />
-                      </Col> :
-                        <Col key={i} lg={4} sm={4}>
-                          <ProductGridComp data={e} />
-                        </Col>
-
-                    ))
-                  }
-                </Row>
-              </section> : <Row className='gy-3 mt-2'>
+              loader ? <Row className='gy-3 mt-2'>
                 {
                   Array(12).fill().map(() => (
                     <Col sm={4}>
@@ -157,7 +144,22 @@ const FineJewelry = ({ resProList, proFilter }) => {
                   ))
                 }
 
-              </Row>
+              </Row> :
+                <section className='mt-3'>
+                  <Row className='gy-3'>
+                    {
+                      resProList?.data?.result?.length > 0 && resProList?.data?.result.map((e, i) => (
+                        view ? <Col key={i} lg={12} sm={12}>
+                          <ProductListGrid data={e} />
+                        </Col> :
+                          <Col key={i} lg={4} sm={4}>
+                            <ProductGridComp data={e} />
+                          </Col>
+
+                      ))
+                    }
+                  </Row>
+                </section>
             }
 
 
