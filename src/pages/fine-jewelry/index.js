@@ -5,8 +5,11 @@ import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import ProductGridComp from './ProductGridComp'
 import ProductListGrid from './ProductListGrid'
-
+import { setCookie,getCookie  } from 'cookies-next';
+import { useRouter } from 'next/router';
 const FineJewelry = ({ resProList, proFilter }) => {
+
+  const router= useRouter();
 
 
 
@@ -38,42 +41,42 @@ const FineJewelry = ({ resProList, proFilter }) => {
 
   const handleCheckbox = (event, title, name, value) => {
     // console.log("aa",event,title,value,index);
-
     const tempGet = [...addedfilter];
-
-
     if (event.target.checked) {
-
       tempGet.forEach((e, i) => {
         if (title === e.title) {
-          e.filter.push(value),
+          e.filter.push(value)
             e.name.push(name)
         }
       })
-
       setAddedfilter(tempGet);
+      setCookie('filterData', JSON.stringify(tempGet));  
+      router.replace(router.asPath)
     } else {
       tempGet.forEach((e, i) => {
         if (title === e.title) {
          const index= e.filter.indexOf(value);
          e.filter.splice(index,1)
+         e.name.splice(index,1)
         }
       })
 
       setAddedfilter(tempGet);
-    }
+      setCookie('filterData', JSON.stringify(tempGet));  
+      router.replace(router.asPath)
+      
+    } 
 
 
-
-
-    
   }
+
+
 
   return (
     <section>
-      {
-        console.log("addedfilter11", addedfilter)
-      }
+      {/* {
+        console.log("addedfilter",addedfilter)
+      } */}
       <Container>
         <div className='wrapperData'>
           <h3>
@@ -153,7 +156,12 @@ const FineJewelry = ({ resProList, proFilter }) => {
 
 export default FineJewelry
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(props,context) {
+  // let getDa= props.req.cookies;
+  // getDa && JSON.parse("getDa",getDa)
+  const filterDataCookie= props?.req?.cookies?.filterData
+  const filterDataIntoParse= filterDataCookie ? JSON.parse(filterDataCookie) : [];
+  console.log("readCookie1",filterDataIntoParse)
   try {
     const data = {
       currency_code: "USD",
@@ -162,7 +170,7 @@ export async function getServerSideProps(context) {
       setwithmax: "0.60",
       category: "fine-jewelry",
       search_text: "",
-      filterdata: [],
+      filterdata: filterDataIntoParse,
       limit: 18,
       offset: 0,
       user_id: "",

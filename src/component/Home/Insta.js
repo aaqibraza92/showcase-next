@@ -11,7 +11,7 @@ const Insta = () => {
                     </div>
                 </Row>
             </Container>
-            <iframe src="https://instagram.demobw.live/showcase/" frameborder="0" width="100%" class="insta-iframe"></iframe>
+            <iframe src="https://instagram.demobw.live/showcase/" frameborder="0" width="100%" className="insta-iframe"></iframe>
         </>
 
     )
