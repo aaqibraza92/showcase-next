@@ -1,20 +1,17 @@
 import { NextResponse } from 'next/server'
-import { json } from 'react-router-dom';
  
 export function middleware(request) {
   // const pvtRoutes = [
   //   "/",
   //   "/cart"
   // ]
-  const path = request?.nextUrl?.pathname;
-  console.log("==LOGIN=======>",request?.nextUrl?.pathname);
+  const path = request?.nextUrl?.pathname; //current path name
   // const private_route = pvtRoutes.includes(request?.nextUrl?.pathname)
-  const isPublicPath = path === '/login' || path ==='/register';
+  const isPublicPath = path === '/login' || path ==='/';
   // const currentUser = JSON.parse(request?.cookies?.get('user_auth')?.value);
-  const token = request?.cookies.get('userData')?.value || '';
+  const token = request?.cookies.get('token')?.value || '';
   
   if (isPublicPath && token) {
-    //  document.getElementById('loginbutton').click()
     return NextResponse.redirect(new URL('/', request.url))
   }
   if(!isPublicPath && !token ){
@@ -22,6 +19,7 @@ export function middleware(request) {
   }
 }
  
+//private routes
 export const config = {
-  matcher: ['/diamonds','/login','/register'],
+  matcher: ['/fine-jewelry','/about','/blog'],
 }

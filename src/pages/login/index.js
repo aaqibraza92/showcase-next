@@ -42,6 +42,7 @@ const Login = ({users}) => {
             if(res.status==200){
                 dispatch(AfterLogin(res?.data?.data))
                 setCookie('userData', JSON.stringify(res?.data?.data));
+                setCookie('token',res?.data?.data?.token);
                 setLoader(false)
             }
          
