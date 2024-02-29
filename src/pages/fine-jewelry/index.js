@@ -9,7 +9,7 @@ import { setCookie, getCookie } from 'cookies-next';
 import { useRouter } from 'next/router';
 const FineJewelry = ({ resProList, proFilter }) => {
 
-  console.log("resProList", resProList)
+  console.log("resProList", resProList?.status)
 
   const router = useRouter();
   const [loader, setloader] = useState(false);
@@ -20,7 +20,7 @@ const FineJewelry = ({ resProList, proFilter }) => {
     if (resProList?.status === 1) {
       setloader(false)
     }
-  }, [proFilter])
+  }, [resProList])
   // console.log("proFilter", addedfilter)
   const firstLoadFilter = async () => {
     const temp = [];
@@ -133,7 +133,8 @@ const FineJewelry = ({ resProList, proFilter }) => {
                 </div>
               </Col>
             </Row>
-
+     
+                
             {
               loader ? <Row className='gy-3 mt-2'>
                 {
