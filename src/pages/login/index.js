@@ -3,6 +3,7 @@ import { ApiHeader, loginApi } from '@/helpers/apiUrl';
 import { Navigation } from '@/store/reducers/HeaderReducer';
 import { AfterLogin } from '@/store/reducers/LoginReducer';
 import axios from 'axios';
+import { setCookie } from 'cookies-next';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 import { Col, Container, Form, Row } from 'react-bootstrap'
@@ -14,6 +15,7 @@ const Login = ({users}) => {
     })
 
     const [loginData,setloginData]=useState({});
+    const [loader,setLoader]=useState(false);
 
     useEffect(()=>{
         setloginData(selector);
@@ -33,12 +35,14 @@ const Login = ({users}) => {
             password: pw,
             session_id: ""
         }
+        setLoader(true)
         axios.post(loginApi,data,{
             headers: ApiHeader
         }).then((res)=>{
             if(res.status==200){
-                console.log("res",res.data)
                 dispatch(AfterLogin(res?.data?.data))
+                setCookie('userData', JSON.stringify(res?.data?.data));
+                setLoader(false)
             }
          
         })
@@ -65,7 +69,7 @@ const Login = ({users}) => {
 
                             <div>
                                 <button className='btnTheme'>
-                                    Login
+                                    {loader ? "Logging in..." : "Login"}
                                 </button>
                             </div>
                             <div className='mb15 mt15'>
