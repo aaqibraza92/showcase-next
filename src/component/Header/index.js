@@ -49,13 +49,11 @@ const Header = () => {
                 </Link>
               </li>
               <li className='mr5 position-relative'>
-              
                 {
                   isLogin ? <span className='trigger'>{getUserData?.first_name}</span>:  <Link href="/login">
                     <Image src={require("@/assets/img/header/user.svg")} />
                   </Link>
                 }
-
               </li>
               <li className='mr5'>
                 <Link href="">
