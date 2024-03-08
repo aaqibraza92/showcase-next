@@ -5,10 +5,12 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
-import Image from 'next/image';
+import Image from 'next/image';import { getCookie } from 'cookies-next';
+
 
 
 const BannerSlider = () => {
+  const userData = getCookie("userData") ? JSON.parse(getCookie("userData")) : [];
   return (
     <section>
         <Swiper
@@ -30,6 +32,7 @@ const BannerSlider = () => {
                   <Row>
                     <Col lg={6}>
                     <h3>
+                      {userData.first_name}
                     Slide {i}
                   </h3>
                   <p>

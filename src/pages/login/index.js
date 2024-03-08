@@ -5,11 +5,13 @@ import { AfterLogin } from '@/store/reducers/LoginReducer';
 import axios from 'axios';
 import { setCookie } from 'cookies-next';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import { Col, Container, Form, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
 
 const Login = ({users}) => {
+    const router = useRouter()
     const selector= useSelector((state)=>{
         return state?.loginReducer?.userData
     })
@@ -43,7 +45,9 @@ const Login = ({users}) => {
                 dispatch(AfterLogin(res?.data?.data))
                 setCookie('userData', JSON.stringify(res?.data?.data));
                 setCookie('token',res?.data?.data?.token);
+                setCookie('isLogin',true);
                 setLoader(false)
+                router.push("/")
             }
          
         })
