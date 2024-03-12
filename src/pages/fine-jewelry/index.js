@@ -1,5 +1,5 @@
 import { listView, square } from '@/assets/svg'
-import { ApiHeader, productListFilter, productlist } from '@/helpers/apiUrl'
+import { productListFilter, productlist } from '@/helpers/apiUrl'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'

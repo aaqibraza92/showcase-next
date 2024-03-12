@@ -1,5 +1,6 @@
 'use client';
-import { ApiHeader, loginApi } from '@/helpers/apiUrl';
+import {  loginApi } from '@/helpers/apiUrl';
+import { ApiHeader } from '@/helpers/apiUrl/helpers';
 import { Navigation } from '@/store/reducers/HeaderReducer';
 import { AfterLogin } from '@/store/reducers/LoginReducer';
 import axios from 'axios';
@@ -47,7 +48,7 @@ const Login = ({users}) => {
                 setCookie('token',res?.data?.data?.token);
                 setCookie('isLogin',true);
                 setLoader(false)
-                router.push("/")
+                router.push("/account")
             }
          
         })

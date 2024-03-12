@@ -10,14 +10,14 @@ import axios from 'axios';
 // import { apiBaseUrl, isObjectNotBlank,isLogin, megaMenu } from '@/helpers/apiUrl';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { getCookie } from 'cookies-next';
+import { logOut } from '@/helpers/apiUrl/helpers';
 
 const Header = () => {
   // const [userData, setuserData] = useState([])
   const [login, setLogin] = useState(false);
   const path = usePathname();
   const router = useRouter();
-const isLogin = getCookie("isLogin");
-console.log('isLogin',isLogin);
+const isLogin = getCookie("isLogin") && JSON.parse(getCookie("isLogin"));
 const userData = getCookie("userData") ? JSON.parse(getCookie("userData")) : [];
   useEffect(() => {
     setLogin(true)
@@ -48,10 +48,12 @@ const userData = getCookie("userData") ? JSON.parse(getCookie("userData")) : [];
                 <Image src={require("@/assets/img/header/search.svg")} />
               </Link>
             </li>
-            <li className='mr5 position-relative'>{console.log("om",userData  )}
+            <li className='mr5 position-relative'>
               {
                 isLogin ? 
-                <span className='trigger'>{userData?.first_name}</span>:  <Link href="/login">
+                <><span className='trigger'>{userData?.first_name}</span> 
+           <button onClick={()=>logOut()} className='noBtn logOut'>Logout</button>
+                </>:  <Link href="/login">
                   <Image src={require("@/assets/img/header/user.svg")} />
                 </Link>
               }

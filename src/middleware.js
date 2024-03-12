@@ -21,5 +21,5 @@ export function middleware(request) {
  
 //private routes
 export const config = {
-  matcher: ['/fine-jewelry','/about','/blog'],
+  matcher: ['/account','/about','/blog'],
 }
