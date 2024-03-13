@@ -6,7 +6,6 @@ import React from 'react'
 import { Container } from 'react-bootstrap'
 
 const Account = ({resUserData}) => {
-  console.log("resUserData",resUserData)
   return (
     <section>
         <Container>

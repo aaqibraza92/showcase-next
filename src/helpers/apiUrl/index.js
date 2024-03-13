@@ -10,5 +10,9 @@ export const relatedProduct = apiBaseUrl+"product/relatedproduct"
 export const productDetailFilter= apiBaseUrl+"product/productdetailfilter"
 export const productListFilter= apiBaseUrl+"product/productfilter"
 export const getUserDetail= apiBaseUrl+"user/GetUserDetail"
+export const addToCartUrl= apiBaseUrl+"order/add_to_cart"
+export const cartLists= apiBaseUrl+"order/cart_list"
+export const removeCart= apiBaseUrl+"order/remove_cart"
+
 
 
