@@ -10,18 +10,23 @@ import Footer from '../component/Footer';
 import { Provider, useStore } from 'react-redux';
 import Store, { wrapper } from '@/store';
 import dynamic from 'next/dynamic';
-export default function App({ Component, pageProps}) {
+import Layout from '@/component/Layout';
+export default function App({ Component, pageProps }) {
 
-    
-// const store=useStore();
+
+  // const store=useStore();
   return <>
-  <Provider store={Store}>
-  <Header/>
-  <div className='mainBody'>
-  <Component {...pageProps} />
-  </div>
-  <Footer/>
-  </Provider>
+    <Provider store={Store}>
+   
+        <Layout>
+          <Header />
+          <div className='mainBody'>
+           <Component {...pageProps} />
+          </div>
+          <Footer />
+        </Layout>
+
+    </Provider>
 
   </>
 }

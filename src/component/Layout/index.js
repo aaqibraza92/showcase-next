@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
 
-const Layout = () => {
+const Layout = ({children}) => {
+  const [dataLoad,setdataLoad]=useState(false)
     useEffect(()=>{
-            const [dataLoad,setdataLoad]=useState(false)
+      setdataLoad(true)
     },[])
   return (
-    <></>
+    <>
+    {children}
+    </>
   )
 }
 

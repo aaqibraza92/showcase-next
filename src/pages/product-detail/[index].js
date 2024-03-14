@@ -13,8 +13,10 @@ import Image from 'next/image';
 import ProductGridComp from '../fine-jewelry/ProductGridComp';
 import { isLogin, postOptions, userData,ApiHeader } from '@/helpers/apiUrl/helpers';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 const ProductDetail = ({ data1, related, filter }) => {
+  const router= useRouter();
   const [btnLoader,setbtnLoader]=useState(false);
   const [filterData, setfilterData] = useState(filter);
   const [variations, setvariations] = useState({});
@@ -42,7 +44,7 @@ const ProductDetail = ({ data1, related, filter }) => {
       'Content-Type': 'application/json'
     }).then((res) => {
       if (res.data.status == 1) {
-        
+        router.push("/cart")
         // toast.success(res.data.message, { autoClose: 3000 });
       } else if (res.data.status == 2) {
         // localStorage.removeItem('bw-user');
