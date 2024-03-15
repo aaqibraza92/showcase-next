@@ -15,6 +15,8 @@ export const cartLists= apiBaseUrl+"order/cart_list"
 export const removeCart= apiBaseUrl+"order/remove_cart"
 export const addrList= apiBaseUrl+"user/address_list"
 export const stateTax= apiBaseUrl+"order/state_tax"
+export const buyApi= apiBaseUrl+"order/buy"
+
 
 
 

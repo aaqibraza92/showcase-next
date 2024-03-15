@@ -32,12 +32,12 @@ const About = () => {
 
                         <Col lg={6} md={6}>
 
-                            <Image className='img-fluid' src={require("@/assets/img/home/banner.jpg")} />
+                            <Image className='img-fluid' src={require("@/assets/img/home/banner.jpg")} alt='banner'/>
                         </Col>
 
                         <Col lg={6} md={6}>
 
-                            <Image className='img-fluid' src={require("@/assets/img/home/banner.jpg")} />
+                            <Image className='img-fluid' src={require("@/assets/img/home/banner.jpg")} alt='banner'/>
                         </Col>
 
                         <Col lg={6} md={6}>

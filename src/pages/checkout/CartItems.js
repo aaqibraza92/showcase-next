@@ -4,7 +4,6 @@ import React from 'react'
 import { Col, Row } from 'react-bootstrap';
 const CartItems = ({ data }) => {
 
-    console.log("DDD", data)
     return (
         <section className='border p-3'>
             <h4 className='mb20'>
@@ -15,7 +14,7 @@ const CartItems = ({ data }) => {
                     <Row key={i} className='mb15 border-top pt15 pb15'>
                     <Col md={3}>
                         <div className='d-flex align-items-center h-100'>
-                            <Link href={`product-detail/${e?.slug}`}><Image width={100} height={100} src={e?.url} /></Link>
+                            <Link href={`product-detail/${e?.slug}`}><Image alt={e?.name} width={100} height={100} src={e?.url} /></Link>
                         </div>
 
                     </Col>

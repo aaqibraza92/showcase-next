@@ -45,7 +45,7 @@ const userData = getCookie("userData") ? JSON.parse(getCookie("userData")) : [];
           <ul className='d-flex justify-content-end noUl'>
             <li className='mr5'>
               <Link href="">
-                <Image src={require("@/assets/img/header/search.svg")} />
+                <Image src={require("@/assets/img/header/search.svg")}  alt='search'/>
               </Link>
             </li>
             <li className='mr5 position-relative'>
@@ -54,18 +54,18 @@ const userData = getCookie("userData") ? JSON.parse(getCookie("userData")) : [];
                 <><Link href="/account"><span className='trigger'>{userData?.first_name}</span> </Link> 
            <button onClick={()=>logOut()} className='noBtn logOut'>Logout</button>
                 </>:  <Link href="/login">
-                  <Image src={require("@/assets/img/header/user.svg")} />
+                  <Image src={require("@/assets/img/header/user.svg")}  alt='user'/>
                 </Link>
               }
             </li>
             <li className='mr5'>
               <Link href="">
-                <Image src={require("@/assets/img/header/heart.svg")} />
+                <Image src={require("@/assets/img/header/heart.svg")}  alt='heart'/>
               </Link>
             </li>
             <li className='mr5'>
               <Link href="/cart">
-                <Image src={require("@/assets/img/header/cart.svg")} />
+                <Image src={require("@/assets/img/header/cart.svg")}  alt='cart'/>
               </Link>
             </li>
           </ul>

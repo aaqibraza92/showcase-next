@@ -3,7 +3,7 @@ import React from 'react'
 const Total = ({data}) => {
     return (
         <section className='border p-3'>
-            <table class="table table-striped">
+            <table className="table table-striped">
                 <tbody>
                     <tr>
                         <th>SUBTOTAL</th>

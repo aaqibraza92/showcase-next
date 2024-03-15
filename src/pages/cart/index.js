@@ -1,5 +1,6 @@
 import { cartLists, removeCart } from '@/helpers/apiUrl'
 import { ApiHeader, isLogin, postOptions, userData } from '@/helpers/apiUrl/helpers'
+import { checkoutContent } from '@/store/reducers/CheckoutReducer'
 import axios from 'axios'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -7,11 +8,12 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify';
 
 const Cart = ({ cartItems }) => {
-
-    console.log("cartItems", cartItems)
+    const dispatch= useDispatch()
+  
     const router = useRouter();
     const [ifcartEmpty, setifcartEmpty] = useState(false);
     const [loader, setLoader] = useState(true);
@@ -31,6 +33,8 @@ const Cart = ({ cartItems }) => {
             // router.push("/fine-jewelry") 
         }
     }, [cartItems?.message])
+
+
 
     const removeFromCart = (cartID) => {
         const data = {
@@ -65,6 +69,15 @@ const Cart = ({ cartItems }) => {
             });
 
     }
+
+    const someAddon=()=>{
+        const data={
+            gift,
+            instruction,
+            coupon
+        }
+        dispatch(checkoutContent(data))
+    }
     return (
         <>
             <Head>
@@ -81,7 +94,7 @@ const Cart = ({ cartItems }) => {
                     </h2>
 
                     {
-                        ifcartEmpty ? <div class="mt-4 p-5 bg-primary text-white rounded mb-5">
+                        ifcartEmpty ? <div className="mt-4 p-5 bg-primary text-white rounded mb-5">
                             <h3 className='mb15'>Your Cart is empty</h3>
                             <Link className='btn btn-secondary' href="/fine-jewelry">Shop Now</Link>
                         </div> : <> <section className='mt30 mb30'>
@@ -100,13 +113,11 @@ const Cart = ({ cartItems }) => {
                             {
                                 cartItems?.status === 1 && cartItems?.data?.cart_data_combo && cartItems?.data?.cart_data_combo?.map((e, i) => (
                                     <div className='cartItemsList border mb20 pl15 pr15 pt15 pb15' key={i}>
-                                        {
-                                            console.log("eee", e?.combo_diamond)
-                                        }
+                                     
                                         <Row>
                                             <Col md={3}>
                                                 <div className='d-flex align-items-center h-100'>
-                                                    <Link href={`product-detail/${e?.slug}`}><Image width={200} height={200} src={e?.combo_diamond?.imagelink} /></Link>
+                                                    <Link href={`product-detail/${e?.slug}`}><Image alt={e?.combo_diamond?.name} width={200} height={200} src={e?.combo_diamond?.imagelink} /></Link>
                                                 </div>
 
                                             </Col>
@@ -236,7 +247,7 @@ const Cart = ({ cartItems }) => {
                                                 <input type="text" onChange={(e) => setcoupon(e.target.value)} className='form-control' value={coupon} placeholder='USE A COUPON CODE' />
                                             </div>
                                             <div className='mb15'>
-                                                <button className='btn btn-secondary'>Apply Coupon</button>
+                                                <button onClick={someAddon} className='btn btn-secondary'>Apply Coupon</button>
                                             </div>
 
                                         </div>
@@ -248,7 +259,7 @@ const Cart = ({ cartItems }) => {
                                                 ORDER TOTAL
                                             </h4>
 
-                                            <table class="table table-striped">
+                                            <table className="table table-striped">
                                                 <tbody>
                                                     <tr>
                                                         <th>SUBTOTAL</th>

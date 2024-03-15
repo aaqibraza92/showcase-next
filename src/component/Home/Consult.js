@@ -28,7 +28,7 @@ const Consult = () => {
 
                     </Col>
                     <Col lg={6}>
-                        <Image src={require('@/assets/img/home/right_img.jpeg')} className='img-fluid' />
+                        <Image src={require('@/assets/img/home/right_img.jpeg')} className='img-fluid' alt='ring right' />
                     </Col>
                 </Row>
             </Container>

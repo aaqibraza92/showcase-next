@@ -58,7 +58,7 @@ Belgium webnet insider
 
             </Col>
             <Col lg={6}>
-                <Image src={require('@/assets/img/home/right_img.jpeg')} className='img-fluid' />
+                <Image src={require('@/assets/img/home/right_img.jpeg')} className='img-fluid' alt='right_img' />
             </Col>
         </Row>
     </Container>

@@ -4,8 +4,8 @@ import { Col, Row } from 'react-bootstrap';
 const Address = (props) => {
     const {data}= props;
   return (
-    <div class="card">
-    <div class="card-body">
+    <div className="card">
+    <div className="card-body">
 
       <Row>
         <Col md={6}>
