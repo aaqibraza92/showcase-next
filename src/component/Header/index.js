@@ -51,7 +51,7 @@ const userData = getCookie("userData") ? JSON.parse(getCookie("userData")) : [];
             <li className='mr5 position-relative'>
               {
                 isLogin ? 
-                <><span className='trigger'>{userData?.first_name}</span> 
+                <><Link href="/account"><span className='trigger'>{userData?.first_name}</span> </Link> 
            <button onClick={()=>logOut()} className='noBtn logOut'>Logout</button>
                 </>:  <Link href="/login">
                   <Image src={require("@/assets/img/header/user.svg")} />
@@ -64,7 +64,7 @@ const userData = getCookie("userData") ? JSON.parse(getCookie("userData")) : [];
               </Link>
             </li>
             <li className='mr5'>
-              <Link href="">
+              <Link href="/cart">
                 <Image src={require("@/assets/img/header/cart.svg")} />
               </Link>
             </li>

@@ -321,7 +321,6 @@ export async function getServerSideProps(props, context) {
             headers: ApiHeader
         }).then((response) => {
             const cartItems = response.data;
-            console.log("cartItems", cartItems)
             return {
                 props: {
                     cartItems,

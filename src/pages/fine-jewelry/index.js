@@ -182,7 +182,6 @@ export async function getServerSideProps(props, context) {
   // getDa && JSON.parse("getDa",getDa)
   const filterDataCookie = props?.req?.cookies?.filterData
   const filterDataIntoParse = filterDataCookie ? JSON.parse(filterDataCookie) : [];
-  console.log("readCookie1", filterDataIntoParse)
   try {
     const data = {
       currency_code: "USD",
