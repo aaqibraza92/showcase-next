@@ -62,6 +62,7 @@ export default function Paypal(props) {
                                    .then(response => {
                                        if (response.data.status == 1) {
                                            setLoader(false)
+                                           alert("success message or redirect to any page")
                                            // history.push(`/ordersuccess/${response.data.data.order_id}/${response.data.data.order_no}/${response.data.data.txn_id}`)
                                            // dispatch(cartlengthvalue(0))
                                        } else {
