@@ -11,14 +11,14 @@ import Total from './Total'
 import Image from 'next/image'
 import { isLogin, postOptions, userData } from '@/helpers/apiUrl/helpers'
 import { useSelector } from 'react-redux'
+import Paypal from '@/component/Paypal'
 const Checkout = ({ addrResp, cartItems }) => {
-  console.log("cartItems", cartItems)
-  
+  const [enablePaypal, setenablePaypal] = useState(false)
   const [loader, setloader] = useState(true)
-
-  const selector= useSelector((state)=>{
+  const [paypalreq, setPaypalreq] = useState([]);
+  const selector = useSelector((state) => {
     return state?.CheckoutReducer?.checkoutData
-})
+  })
 
   useEffect(() => {
     if (addrResp?.status === 1) {
@@ -28,66 +28,66 @@ const Checkout = ({ addrResp, cartItems }) => {
 
   const checkout = () => {
     const data = {
-        currency_code: "USD",
-        user_id: userData.user_id ? userData.user_id : "",
-        coupan_code: selector?.coupon,
-        session_id: "",
-        order_total: cartItems?.data?.sub_total,
-        gift_message: selector?.gift,
-        instructions: selector?.instruction,
-        tax_amount: cartItems?.data?.tax ? cartItems?.data?.tax : "",
-        s_address_id: addrResp?.data?.address?.[0]?.address_id,
-        b_address_id: addrResp?.data?.address?.[0]?.address_id,
-        shipping_cost: cartItems?.data?.shipping ? cartItems?.data?.shipping : "",
-        shipping_option_id: "",
-        token: isLogin ? userData.token : "",
-        password: "",
-        email: addrResp?.data?.address?.[0]?.email,
-        sfirst_name: addrResp?.data?.address?.[0]?.first_name,
-        slast_name: addrResp?.data?.address?.[0]?.last_name,
-        sphone: addrResp?.data?.address?.[0]?.phone,
-        saddress1: addrResp?.data?.address?.[0]?.address1,
-        saddress2: addrResp?.data?.address?.[0]?.address2,
-        scity: addrResp?.data?.address?.[0]?.city,
-        sstate: addrResp?.data?.address?.[0]?.state,
-        scountry: addrResp?.data?.address?.[0]?.country,
-        szip: addrResp?.data?.address?.[0]?.zip,
-        bfirst_name: addrResp?.data?.address?.[0]?.first_name,
-        blast_name: addrResp?.data?.address?.[0]?.last_name,
-        bphone: addrResp?.data?.address?.[0]?.phone,
-        baddress1: addrResp?.data?.address?.[0]?.address1,
-        baddress2: addrResp?.data?.address?.[0]?.address2,
-        bcity: addrResp?.data?.address?.[0]?.city,
-        bstate: addrResp?.data?.address?.[0]?.state,
-        bcountry: addrResp?.data?.address?.[0]?.country,
-        bzip: addrResp?.data?.address?.[0]?.zip,
-        payment_mode: 1
+      currency_code: "USD",
+      user_id: userData.user_id ? userData.user_id : "",
+      coupan_code: selector?.coupon,
+      session_id: "",
+      order_total: cartItems?.data?.sub_total,
+      gift_message: selector?.gift,
+      instructions: selector?.instruction,
+      tax_amount: cartItems?.data?.tax ? cartItems?.data?.tax : "",
+      s_address_id: addrResp?.data?.address?.[0]?.address_id,
+      b_address_id: addrResp?.data?.address?.[0]?.address_id,
+      shipping_cost: 10,
+      shipping_option_id: "",
+      token: isLogin ? userData.token : "",
+      password: "",
+      email: addrResp?.data?.address?.[0]?.email,
+      sfirst_name: addrResp?.data?.address?.[0]?.first_name,
+      slast_name: addrResp?.data?.address?.[0]?.last_name,
+      sphone: addrResp?.data?.address?.[0]?.phone,
+      saddress1: addrResp?.data?.address?.[0]?.address1,
+      saddress2: addrResp?.data?.address?.[0]?.address2,
+      scity: addrResp?.data?.address?.[0]?.city,
+      sstate: addrResp?.data?.address?.[0]?.state,
+      scountry: addrResp?.data?.address?.[0]?.country,
+      szip: addrResp?.data?.address?.[0]?.zip,
+      bfirst_name: addrResp?.data?.address?.[0]?.first_name,
+      blast_name: addrResp?.data?.address?.[0]?.last_name,
+      bphone: addrResp?.data?.address?.[0]?.phone,
+      baddress1: addrResp?.data?.address?.[0]?.address1,
+      baddress2: addrResp?.data?.address?.[0]?.address2,
+      bcity: addrResp?.data?.address?.[0]?.city,
+      bstate: addrResp?.data?.address?.[0]?.state,
+      bcountry: addrResp?.data?.address?.[0]?.country,
+      bzip: addrResp?.data?.address?.[0]?.zip,
+      payment_mode: 1
     }
 
-    
 
 
-    // axios.post(buyApi, data, postOptions)
-    //     .then(res => {
-    //         if (res.data.status == 1) {
-    //             setPaypalreq(res.data.data)
-    //             setPaypalpopup(true)
-    //             toast.success(res.data.message, { autoClose: 3000 });
-    //         } else if (res.data.status == 2) {
-    //             localStorage.removeItem('bw-user')
-    //             dispatch(whishlistlength(0))
-    //             dispatch(cartlengthvalue(0))
-    //             dispatch(sessionId(''))
-    //             history.push("/")
-    //             window.location.reload(true);
-    //         } else {
-    //             toast.error(res.data.message, { autoClose: 3000 });
-    //         }
-    //     })
-    //     .catch((error) => {
-    //         console.log(error);
-    //     });
-}
+
+    axios.post(buyApi, data, postOptions)
+      .then(res => {
+        if (res.data.status == 1) {
+          console.log("res.data.status",res.data.status)
+          setPaypalreq(res.data.data)
+          setenablePaypal(true)
+        } else if (res.data.status == 2) {
+          // localStorage.removeItem('bw-user')
+          // dispatch(whishlistlength(0))
+          // dispatch(cartlengthvalue(0))
+          // dispatch(sessionId(''))
+          // history.push("/")
+          // window.location.reload(true);
+        } else {
+          toast.error(res.data.message, { autoClose: 3000 });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   return (
     <>
       <Head>
@@ -131,7 +131,7 @@ const Checkout = ({ addrResp, cartItems }) => {
 
           <section className='mt30 mb30'>
             <Row>
-            <Col md={7}>
+              <Col md={7}>
                 {
                   cartItems?.status !== 1 ? <div className="skeleton" style={{ height: "300px" }}></div> :
                     <Total data={cartItems?.data} />
@@ -145,16 +145,24 @@ const Checkout = ({ addrResp, cartItems }) => {
                   </h4>
 
                   <div className='mt20 mb20'>
-                    <Image src={require("@/assets/img/paypal.png")} alt="paypal" />
+                    {
+                      enablePaypal ? <Paypal id="paypalbutton" data={paypalreq} /> : <Image src={require("@/assets/img/paypal.png")} alt="paypal" />
+                    }
+
+
                   </div>
 
-                  <button className='btn btn-secondary w-100' onClick={checkout}>
+                  {
+                    !enablePaypal &&   <button className='btn btn-secondary w-100' onClick={checkout}>
                     Continue
                   </button>
+                  }
+
+                
                 </div>
 
               </Col>
-         
+
             </Row>
           </section>
         </Container>
