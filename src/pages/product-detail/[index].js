@@ -22,7 +22,6 @@ const ProductDetail = ({ data1, related, filter }) => {
   const [variations, setvariations] = useState({});
   const allData = data1?.data?.[0];
 
-  console.log("allData",allData?.product_id)
 
   const addToCart=()=>{
     const data = {
