@@ -4,6 +4,7 @@ const nextConfig = {
   images: {
     domains: ["dl2vs6wk2ewna.cloudfront.net","swiperjs.com","showcase.demobw.com"],
   },
+  basePath: '/dev',
   // redirects: async ()=>{
   //   return [
   //     {
