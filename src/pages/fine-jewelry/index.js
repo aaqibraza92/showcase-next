@@ -9,7 +9,6 @@ import { setCookie, getCookie } from 'cookies-next';
 import { useRouter } from 'next/router';
 const FineJewelry = ({ resProList, proFilter }) => {
 
-  console.log("resProList", resProList?.status)
 
   const router = useRouter();
   const [loader, setloader] = useState(false);
@@ -138,8 +137,8 @@ const FineJewelry = ({ resProList, proFilter }) => {
             {
               loader ? <Row className='gy-3 mt-2'>
                 {
-                  Array(12).fill().map(() => (
-                    <Col sm={4}>
+                  Array(12).fill().map((e,i) => (
+                    <Col sm={4} key={i}>
                       <div className="skeleton" style={{ height: "300px" }}></div>
                     </Col>
                   ))

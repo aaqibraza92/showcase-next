@@ -8,7 +8,7 @@ const ProductGridComp = (props) => {
   return (
     <div className='productMainWrapper'>
         <div className='proList'>
-          <Link href={`/product-detail/${data?.slug}`}><Image alt="image" width={300} height={300} className='img-fluid' src={data?.product_image?.[0]?.url}/></Link>
+          <Link href={`/product-detail/${data?.slug}`}><Image alt={data?.name} width={300} height={300} className='img-fluid' src={data?.product_image?.[0]?.url}/></Link>
         </div>
         <div className='productTitle fs15 fw600 mt8'>
         <Link className="colorBlack" href={`/product-detail/${data?.slug}`}>{data?.name}</Link>  

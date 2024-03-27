@@ -3,7 +3,7 @@ import { useParams } from 'next/navigation'
 import { useRouter } from 'next/router'
 import { Container } from 'react-bootstrap';
 
-const blogDetail = () => {
+const BlogDetail = () => {
   const router= useRouter();
     console.log("props",router?.query?.detail)
   return (
@@ -16,7 +16,7 @@ const blogDetail = () => {
   )
 }
 
-export default blogDetail
+export default BlogDetail
 
 
 // export async function generateStaticParams(){

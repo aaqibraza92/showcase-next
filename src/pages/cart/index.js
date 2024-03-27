@@ -32,7 +32,7 @@ const Cart = ({ cartItems }) => {
             setifcartEmpty(true)
             // router.push("/fine-jewelry") 
         }
-    }, [cartItems?.message])
+    }, [cartItems?.message,cartItems?.status ])
 
 
 

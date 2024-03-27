@@ -24,7 +24,7 @@ const Checkout = ({ addrResp, cartItems }) => {
     if (addrResp?.status === 1) {
       setloader(false)
     }
-  }, [])
+  }, [addrResp?.status])
 
   const checkout = () => {
     const data = {

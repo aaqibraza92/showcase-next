@@ -6,7 +6,7 @@ const UserLists = (props) => {
     const [data,setData]=useState(props?.data)
     useEffect(() => {
         getDat()
-    }, [])
+    }, [props?.data])
 
 
     const getDat = async () => {
