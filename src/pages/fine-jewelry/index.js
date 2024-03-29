@@ -19,7 +19,7 @@ const FineJewelry = ({ resProList, proFilter }) => {
     if (resProList?.status === 1) {
       setloader(false)
     }
-  }, [resProList])
+  }, [resProList?.status])
   // console.log("proFilter", addedfilter)
   const firstLoadFilter = async () => {
     const temp = [];

@@ -82,7 +82,7 @@ const Login = ({users}) => {
                                 Forgot Password?
                             </div>
                             <div>
-                            Don't have an account ? <Link href="/register">Sign Up</Link>
+                            Don&apos;t have an account ? <Link href="/register">Sign Up</Link>
                             </div>
                            
                         </div>

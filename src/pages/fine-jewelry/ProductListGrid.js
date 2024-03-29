@@ -11,7 +11,7 @@ const ProductListGrid = (props) => {
             <Row>
                 <Col lg={4}>
                     <div className='proList'>
-                    <Link href={`/product-detail/${data?.slug}`}> <Image width={300} height={300} className='img-fluid' src={data?.product_image?.[0]?.url} /> </Link>
+                    <Link href={`/product-detail/${data?.slug}`}> <Image width={300} height={300} className='img-fluid' src={data?.product_image?.[0]?.url} alt={data?.name} /> </Link>
                     </div>
                 </Col>
                 <Col lg={8}>

@@ -87,7 +87,7 @@ export default function Paypal(props) {
         }, 1500);
      
     
-    }, []);
+    }, [props.data.description]);
 
     return (
         <>
