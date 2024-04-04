@@ -10,7 +10,7 @@ const CartItems = ({ data }) => {
             YOUR ORDER SUMMARY
             </h4>
             {
-                data.length > 0 && data?.map((e,i) => (
+                data && data?.map((e,i) => (
                     <Row key={i} className='mb15 border-top pt15 pb15'>
                     <Col md={3}>
                         <div className='d-flex align-items-center h-100'>
